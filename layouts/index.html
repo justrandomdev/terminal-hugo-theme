@@ -1,0 +1,68 @@
+{{ define "main" }}
+<div id="matrix"></div>
+<div id="terminal-container">
+    <div id="terminal">
+        Welcome to {{ .Site.Params.Name }}'s Quantum Terminal Portfolio
+        =================================================
+
+        <span class="prompt">{{ .Site.Params.Username }}</span>:<span class="path">~</span>$ cat about.txt
+
+        Name: {{ .Site.Params.Name }}
+        Alias: {{ .Site.Params.Alias }}
+        Specialization: {{ .Site.Params.Specialization }}
+        Location: {{ .Site.Params.Location }}
+
+        <span class="prompt">{{ .Site.Params.Username }}</span>:<span class="path">~</span>$ ls -l skills/
+
+        {{ range .Site.Data.skills }}
+        drwxr-xr-x 2 {{ $.Site.Params.Username }} {{ $.Site.Params.Username }} 4096 {{ .Date }} <span style="color: #a9dc76;">{{ .Name }}</span>
+        {{ end }}
+
+        <span class="prompt">{{ .Site.Params.Username }}</span>:<span class="path">~</span>$ cat projects.log
+
+        {{ range .Site.Data.projects }}
+        {{ .ID }}. {{ .Title }}: {{ .Description }}
+        {{ end }}
+
+        <span class="prompt">{{ .Site.Params.Username }}</span>:<span class="path">~</span>$ nmap -p- achievements
+
+        {{ range .Site.Data.achievements }}
+        PORT      STATE SERVICE
+        {{ .Port }}/tcp    open  {{ .Description }}
+        {{ end }}
+
+        <span class="prompt">{{ .Site.Params.Username }}</span>:<span class="path">~</span>$ echo "Initiate quantum leap to:"
+
+        Initiate quantum leap to:
+
+        <span class="prompt">{{ .Site.Params.Username }}</span>:<span class="path">~</span>$ choose_reality
+
+        {{ range .Site.Params.Links }}
+        <a href="{{ .URL }}" class="button">{{ .Name }}</a>
+        {{ end }}
+
+        <span class="prompt">{{ .Site.Params.Username }}</span>:<span class="path">~</span>$ echo "Select your quantum state. Which reality will you collapse into existence?"
+
+        Select your quantum state. Which reality will you collapse into existence?
+
+        <span id="command-output"></span>
+        <span class="prompt">{{ .Site.Params.Username }}</span>:<span class="path">~</span>$ <input type="text" id="command-input">
+    </div>
+</div>
+
+<div id="popup">
+    <h2>Welcome to the Quantum Terminal!</h2>
+    <p>Here's how to navigate this interdimensional interface:</p>
+    <ul>
+        <li>Type commands in the terminal prompt at the bottom</li>
+        <li>Use 'man' or 'help' to see available commands</li>
+        <li>Click on blue buttons to navigate to different realities</li>
+        <li>Explore and have fun in the quantum realm!</li>
+    </ul>
+    <div id="loading">
+        <div id="loading-spinner"></div>
+        <p>Initializing quantum systems...</p>
+    </div>
+    <button onclick="closePopup()" style="display: none;" id="enter-button">Enter the Quantum Realm</button>
+</div>
+{{ end }}

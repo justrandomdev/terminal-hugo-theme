@@ -1,0 +1,324 @@
+<html><head><base href="https://hacker-terminal-portfolio.net/%20Add%20a%20popup%20on%20initial%20load%20that%20gives%20%20a%20user%20instructions%20on%20how%20to%20use%20the%20terminal%20i.e%20buttons%20are%20clickable%20and%20commands%20can%20be%20entered"><title>Quantum Hacker Terminal: John Doe</title>
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  font-family: 'Ubuntu Mono', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+#terminal-container {
+  background-color: #2d2a2e;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  width: 90%;
+  max-width: 2000px;
+  height: 90%;
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+@media (min-width: 768px) {
+  #terminal-container {
+    width: 80%;
+  }
+}
+#terminal {
+  white-space: pre-wrap;
+  line-height: 1.5;
+  color: #fcfcfa;
+}
+a {
+  color: #78dce8;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.button {
+  display: inline-block;
+  background-color: #78dce8;
+  color: #2d2a2e;
+  padding: 5px 10px;
+  margin: 5px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+.button:hover {
+  background-color: #ff6188;
+}
+#matrix {
+  color: #00ff00;
+  font-size: 14px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes fall {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+.matrix-char {
+  position: absolute;
+  animation: fall 13.5s linear infinite;
+}
+#command-input {
+  background-color: transparent;
+  border: none;
+  color: #fcfcfa;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 16px;
+  width: calc(100% - 200px);
+  outline: none;
+}
+.prompt {
+  color: #ff6188;
+}
+.path {
+  color: #78dce8;
+}
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2d2a2e;
+  border: 2px solid #78dce8;
+  border-radius: 5px;
+  padding: 20px;
+  z-index: 1000;
+  color: #fcfcfa;
+  box-shadow: 0 0 20px rgba(120, 220, 232, 0.5);
+}
+#popup h2 {
+  color: #ff6188;
+  margin-top: 0;
+}
+#popup ul {
+  padding-left: 20px;
+}
+#popup button {
+  background-color: #78dce8;
+  color: #2d2a2e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+#popup button:hover {
+  background-color: #ff6188;
+}
+#loading {
+  text-align: center;
+  margin-top: 20px;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #78dce8;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<div id="matrix"></div>
+<div id="terminal-container">
+<div id="terminal">
+Welcome to John Doe's Quantum Terminal Portfolio
+================================================
+
+<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ cat about.txt
+
+Name: John Doe
+Alias: QuantumMind
+Specialization: Quantum Cybersecurity & Interdimensional Computing
+Location: The Multiverse Nexus
+
+<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ ls -l skills/
+
+total 3141592
+drwxr-xr-x 2 john john 4096 Jun 15 2023 <span style="color: #a9dc76;">quantum_entanglement_networking</span>
+drwxr-xr-x 2 john john 4096 Jun 15 2023 <span style="color: #a9dc76;">multiverse_data_encryption</span>
+drwxr-xr-x 2 john john 4096 Jun 15 2023 <span style="color: #a9dc76;">temporal_anomaly_detection</span>
+drwxr-xr-x 2 john john 4096 Jun 15 2023 <span style="color: #a9dc76;">quantum_AI_symbiosis</span>
+drwxr-xr-x 2 john john 4096 Jun 15 2023 <span style="color: #a9dc76;">interdimensional_firewall_protocols</span>
+
+<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ cat projects.log
+
+1. QuantumNet: A network that exists simultaneously across multiple universes
+2. Schrödinger's Firewall: Security that's both impenetrable and non-existent until observed
+3. Multiverse MySQL: Database management system that queries all possible versions of data
+4. QuBit Soul: Transferring human consciousness into stable quantum states
+5. TimeLoop Antivirus: Software that prevents viruses before they're even created
+
+<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ nmap -p- achievements
+
+PORT      STATE SERVICE
+42/tcp    open  Answer_to_Life_Universe_and_Everything
+1337/tcp  open  Solved_P_vs_NP_Problem
+9000/tcp  open  Established_First_Contact_with_Quantum_Aliens
+31415/tcp open  Pi_Master_of_Infinite_Decimals
+99999/tcp open  Bridged_Classical_and_Quantum_Reality
+
+<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ echo "Initiate quantum leap to:"
+
+Initiate quantum leap to:
+
+<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ choose_reality
+
+<a href="https://quantum-linkedin.multiverse/johndoe" class="button">LinkedIn Multiverse</a> <a href="https://quantum-youtube.timelines/quantummind" class="button">YouTube Timelines</a> <a href="https://quantum-x.dimensions/johndoe" class="button">X Dimensions</a>
+
+<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ echo "Select your quantum state. Which reality will you collapse into existence?"
+
+Select your quantum state. Which reality will you collapse into existence?
+
+<span id="command-output"></span>
+<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ <input type="text" id="command-input">
+</div>
+</div>
+
+<div id="popup">
+  <h2>Welcome to the Quantum Terminal!</h2>
+  <p>Here's how to navigate this interdimensional interface:</p>
+  <ul>
+    <li>Type commands in the terminal prompt at the bottom</li>
+    <li>Use 'man' or 'help' to see available commands</li>
+    <li>Click on blue buttons to navigate to different realities</li>
+    <li>Explore and have fun in the quantum realm!</li>
+  </ul>
+  <div id="loading">
+    <div id="loading-spinner"></div>
+    <p>Initializing quantum systems...</p>
+  </div>
+  <button onclick="closePopup()" style="display: none;" id="enter-button">Enter the Quantum Realm</button>
+</div>
+
+<script>
+const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+[]{}|;:,.<>?ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω∀∂∃∅∇∈∉∋∏∑−∕∗∙√∝∞∠∡∢∧∨∩∪∫∬∭∮∯∰∱∲∳≠≡≤≥⊂⊃⊄⊅⊆⊇⊈⊉⊊⊋⊕⊗⊥⋀⋁⋂⋃⋄⋅⋆⋇⋈⋉⋊⋋⋌⋍⋎⋏⋐⋑⋒⋓⋔⋕⋖⋗⋘⋙⋚⋛⋜⋝⋞⋟⋠⋡⋢⋣⋤⋥⋦⋧⋨⋩⋪⋫⋬⋭⋮⋯⋰⋱';
+const matrixContainer = document.getElementById('matrix');
+
+function createMatrixChar() {
+    const char = document.createElement('span');
+    char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+    char.className = 'matrix-char';
+    char.style.left = Math.random() * 100 + 'vw';
+    char.style.animationDuration = Math.random() * 9 + 4.5 + 's';
+    char.style.fontSize = Math.random() * 10 + 10 + 'px';
+    char.style.opacity = Math.random() * 0.5 + 0.5;
+    matrixContainer.appendChild(char);
+    setTimeout(() => {
+        matrixContainer.removeChild(char);
+    }, 13500);
+}
+
+setInterval(createMatrixChar, 90);
+
+const commandInput = document.getElementById('command-input');
+const commandOutput = document.getElementById('command-output');
+
+const commands = {
+    'cat about.txt': `
+Name: John Doe
+Alias: QuantumMind
+Specialization: Quantum Cybersecurity & Interdimensional Computing
+Location: The Multiverse Nexus
+`,
+    'ls -l skills/': `
+total 3141592
+drwxr-xr-x 2 john john 4096 Jun 15 2023 quantum_entanglement_networking
+drwxr-xr-x 2 john john 4096 Jun 15 2023 multiverse_data_encryption
+drwxr-xr-x 2 john john 4096 Jun 15 2023 temporal_anomaly_detection
+drwxr-xr-x 2 john john 4096 Jun 15 2023 quantum_AI_symbiosis
+drwxr-xr-x 2 john john 4096 Jun 15 2023 interdimensional_firewall_protocols
+`,
+    'cat projects.log': `
+1. QuantumNet: A network that exists simultaneously across multiple universes
+2. Schrödinger's Firewall: Security that's both impenetrable and non-existent until observed
+3. Multiverse MySQL: Database management system that queries all possible versions of data
+4. QuBit Soul: Transferring human consciousness into stable quantum states
+5. TimeLoop Antivirus: Software that prevents viruses before they're even created
+`,
+    'nmap -p- achievements': `
+PORT      STATE SERVICE
+42/tcp    open  Answer_to_Life_Universe_and_Everything
+1337/tcp  open  Solved_P_vs_NP_Problem
+9000/tcp  open  Established_First_Contact_with_Quantum_Aliens
+31415/tcp open  Pi_Master_of_Infinite_Decimals
+99999/tcp open  Bridged_Classical_and_Quantum_Reality
+`,
+    'man': `Available commands:
+- cat about.txt
+- ls -l skills/
+- cat projects.log
+- nmap -p- achievements
+- choose_reality
+- man or help
+`,
+    'help': `Available commands:
+- cat about.txt
+- ls -l skills/
+- cat projects.log
+- nmap -p- achievements
+- choose_reality
+- man or help
+`,
+    'choose_reality': `
+<a href="https://quantum-linkedin.multiverse/johndoe" class="button">LinkedIn Multiverse</a> <a href="https://quantum-youtube.timelines/quantummind" class="button">YouTube Timelines</a> <a href="https://quantum-x.dimensions/johndoe" class="button">X Dimensions</a>
+`
+};
+
+commandInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const command = this.value.trim();
+        this.value = '';
+        
+        if (commands.hasOwnProperty(command)) {
+            commandOutput.innerHTML += `<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ ${command}\n${commands[command]}`;
+        } else if (command === 'clear') {
+            commandOutput.innerHTML = '';
+        } else {
+            commandOutput.innerHTML += `<span class="prompt">john@quantummind</span>:<span class="path">~</span>$ ${command}\nCommand not found: ${command}. Type 'man' or 'help' for available commands.\n`;
+        }
+        
+        commandInput.scrollIntoView();
+    }
+});
+
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    commandInput.focus();
+}
+
+window.addEventListener('load', function() {
+    setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('enter-button').style.display = 'block';
+    }, 3000);  // Simulating a 3-second load time
+});
+
+// Focus on command input as soon as possible
+document.addEventListener('DOMContentLoaded', (event) => {
+    commandInput.focus();
+});
+</script>
+</body>
+</html>
